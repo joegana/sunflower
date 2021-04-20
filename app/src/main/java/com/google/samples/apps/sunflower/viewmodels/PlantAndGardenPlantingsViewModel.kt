@@ -16,11 +16,15 @@
 
 package com.google.samples.apps.sunflower.viewmodels
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.google.samples.apps.sunflower.data.GardenPlanting
 import com.google.samples.apps.sunflower.data.PlantAndGardenPlantings
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class PlantAndGardenPlantingsViewModel(plantings: PlantAndGardenPlantings) {
+class PlantAndGardenPlantingsViewModel(plantings: PlantAndGardenPlantings): ViewModel() {
     private val plant = checkNotNull(plantings.plant)
     private val gardenPlanting = plantings.gardenPlantings[0]
 
@@ -38,4 +42,7 @@ class PlantAndGardenPlantingsViewModel(plantings: PlantAndGardenPlantings) {
     companion object {
         private val dateFormat = SimpleDateFormat("MMM d, yyyy", Locale.US)
     }
+
+    
+
 }

@@ -44,7 +44,7 @@ class GardenFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentGardenBinding.inflate(inflater, container, false)
-        val adapter = GardenPlantingAdapter()
+        val adapter = GardenPlantingAdapter(viewModel)
         binding.gardenList.adapter = adapter
 
         binding.addPlant.setOnClickListener {

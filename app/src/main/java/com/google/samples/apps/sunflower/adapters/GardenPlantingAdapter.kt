@@ -28,9 +28,10 @@ import com.google.samples.apps.sunflower.R
 import com.google.samples.apps.sunflower.HomeViewPagerFragmentDirections
 import com.google.samples.apps.sunflower.data.PlantAndGardenPlantings
 import com.google.samples.apps.sunflower.databinding.ListItemGardenPlantingBinding
+import com.google.samples.apps.sunflower.viewmodels.GardenPlantingListViewModel
 import com.google.samples.apps.sunflower.viewmodels.PlantAndGardenPlantingsViewModel
 
-class GardenPlantingAdapter :
+class GardenPlantingAdapter(val listViewModel: GardenPlantingListViewModel? = null) :
     ListAdapter<PlantAndGardenPlantings, GardenPlantingAdapter.ViewHolder>(
         GardenPlantDiffCallback()
     ) {
@@ -48,7 +49,7 @@ class GardenPlantingAdapter :
         holder.bind(getItem(position))
     }
 
-    class ViewHolder(
+    inner class ViewHolder(
         private val binding: ListItemGardenPlantingBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         init {
@@ -56,6 +57,10 @@ class GardenPlantingAdapter :
                 binding.viewModel?.plantId?.let { plantId ->
                     navigateToPlant(plantId, view)
                 }
+            }
+            binding.setOnLongClickListener {
+                listViewModel?.deletePlantFromGarden( binding.viewModel?.plantId)
+                true
             }
         }
 

@@ -27,3 +27,8 @@ fun bindIsGone(view: View, isGone: Boolean) {
         View.VISIBLE
     }
 }
+
+@BindingAdapter("onLongClick")
+fun setOnLongClickListener(view:View?,onLongClickListener: View.OnLongClickListener?){
+    view?.setOnLongClickListener(onLongClickListener)
+}
